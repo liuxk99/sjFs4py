@@ -23,3 +23,23 @@ def parse_dir(logcat_dir):
         if i > count:
             count = i
     return count
+
+
+def mv_files(count):
+    # logcat.log logcat.log.1 logcat.log.2
+    # logcat.03.log logcat.02.log logcat.01.log
+
+    old_names = []
+    new_names = []
+    old_names.append("logcat.log")
+    new_name = "logcat.%02d.log" % (count + 1)
+    new_names.append(new_name)
+
+    for i in range(1, count + 1):
+        old_name = "logcat.log.%d" % i
+        new_name = "logcat.%02d.log" % (count + 1 - i)
+        old_names.append(old_name)
+        new_names.append(new_name)
+
+    return old_names, new_names
+
