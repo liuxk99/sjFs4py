@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+import getopt
+import os
 import re
+import sys
 
 import sjFs
 
@@ -43,3 +46,52 @@ def mv_files(count):
 
     return old_names, new_names
 
+def help(exec_cmd):
+    print "%s --logcat-dir=$dir" % exec_cmd
+    sys.exit(1)
+
+    pass
+
+
+def do_main(log_dir):
+    count = parse_dir(log_dir)
+    old_names, new_names = mv_files(count)
+    for i in range(0, count + 1):
+        old_name = os.path.join(log_dir, old_names[i])
+        new_name = os.path.join(log_dir, new_names[i])
+
+        print "mv %s -> %s" % (old_name,
+                               new_name)
+        os.rename(old_name, new_name)
+    pass
+
+
+if __name__ == '__main__':
+    # sys.setdefaultencoding('utf8')
+    exec_cmd = sys.argv[0]
+
+    print sys.argv[1:]
+    if len(sys.argv) < 2:
+        help(exec_cmd)
+
+    # parse parameters
+    opts = []
+    try:
+        opts, arg = getopt.getopt(sys.argv[1:], "",
+                                  ["logcat-dir="])
+    except getopt.GetoptError:
+        print("syntax error")
+        help(exec_cmd)
+
+    logcat_dir = None
+
+    for opt, arg in opts:
+        if opt in '--logcat-dir':
+            logcat_dir = arg
+        elif opt in '--help':
+            help(exec_cmd)
+    if logcat_dir is None:
+        print("syntax error")
+        help(exec_cmd)
+
+    do_main(logcat_dir)

@@ -1,7 +1,6 @@
 import os
 from unittest import TestCase
 
-# import filename_parser
 import logcat_name
 
 
