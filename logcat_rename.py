@@ -17,9 +17,9 @@ def parse_file(filename):
     return no
 
 
-def parse_dir(logcat_dir):
+def parse_dir(log_dir):
     count = 0
-    fn_list = sjFs.list_files(logcat_dir)
+    fn_list = sjFs.list_files(log_dir)
     for fn in fn_list:
         print fn
         i = parse_file(fn)
