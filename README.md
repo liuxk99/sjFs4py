@@ -55,7 +55,7 @@ logcat.log.2 -> logcat.01.log
 ```
 ## usage
 ```
-  578  python /disk2/thomas/bin/sjFs4py/logcat_rename.py --logcat-dir=/disk2/thomas/sjPBP/DMS/GRACE-89/03/Log.2/
+  578  python logcat_rename.py --logcat-dir=/disk2/thomas/sjPBP/DMS/GRACE-89/03/Log.2/
 ```
 After that the filenames will be these:
 ```
